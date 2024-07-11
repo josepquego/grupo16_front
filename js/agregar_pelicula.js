@@ -44,3 +44,41 @@ function resetErrorMessages() {
 
 document.addEventListener('DOMContentLoaded', validarPelicula);
 
+ocument.addEventListener('DOMContentLoaded', async() => {
+    const options = {
+        method: 'GET',
+        header: {
+            'Content-Type' : 'application/json'
+        }
+    };
+    const response = await fetch('', options);
+    const data = await response.json();
+    const movies = data;
+
+    const tbody = document.getElementById('bodyTablePeliculas');
+    /*Recorrer pelicula y agregar fila*/
+    movies.forEach(movie => {      
+    const tr = document.createElement('tr');
+    const tdIdPelicula = document.createElement('td');
+    tdIdPelicula.textContent = movie.idPelicula;
+    const tdTitulo = document.createElement('td');
+    tdTitulo.textContent = movie.titulo;
+    const tdDuracion = document.createElement('td');
+    tdDuracion.textContent = movie.duracion;
+    const tdGenero = document.createElement('td');
+    tdGenero.textContent = movie.genero;
+    const tdImagen = document.createElement('td');
+    const img = document.createElement('img');
+    img.src = "../assets/img"+ movie.imagen; 
+    img.with = '150';
+    tdImagen.appendChild(img);
+    img.classList.add('img-fluid');
+    img.classList.add('img-thumbnail')
+    tr.appendChild(tdIdPelicula);
+    tr.appendChild(tdTitulo);
+    tr.appendChild(tdDuracion);
+    tr.appendChild(tdGenero);
+    tr.appendChild(tdImagen);
+    tbody.appendChild(tr);
+    });
+});
