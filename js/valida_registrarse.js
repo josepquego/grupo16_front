@@ -1,14 +1,54 @@
 /*Esta línea añade un evento al documento que se activa cuando el contenido HTML ha sido completamente cargado y parseado. En otras palabras, se ejecuta cuando el DOM está listo para ser manipulado.*/
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.querySelector('form');
-    /*Aquí se agrega un evento de escucha al formulario que se activa cuando se intenta enviar el formulario. */
-    form.addEventListener('submit', (event) => {
+    
+    const form = document.querySelector('#form-registro'); // Corregido: selector por ID
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Evita el envío por defecto del formulario
+
         if (!validateForm()) {
             console.log('El formulario no es válido. Por favor, corrige los errores.');
-            event.preventDefault(); // Esta línea evita que el formulario se envíe si hay errores de validación
         } else {
             console.log('El formulario es válido. Enviar datos...');
-            // Aquí puedes enviar los datos del formulario o realizar otras acciones
+
+            const formData = new FormData(form);
+            const nombre = formData.get('nombre');
+            const apellido = formData.get('apellido');
+            const email = formData.get('email');
+            const password = formData.get('password');
+            const fechaNacimiento = formData.get('fechaNacimiento');
+            const pais = formData.get('pais');
+
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    nombre: nombre,
+                    apellido: apellido,
+                    email: email,
+                    password: password,
+                    fechaNacimiento: fechaNacimiento,
+                    pais: pais
+                })
+            };
+
+            try {
+                const response = await fetch('http://localhost/cac/grupo16_front/api/crear_usuario.php', options);
+                const data = await response.json();
+
+                if (response.ok) { // Verificar si la respuesta fue exitosa
+                    alert('Usuario registrado correctamente');
+                    form.reset();
+                    location.href = '../pages/iniciosesion.html';
+                } else {
+                    alert('Error al registrar usuario: ' + data.message);
+                }
+            } catch (error) {
+                console.error('Error al enviar la solicitud:', error);
+                alert('Error al registrar usuario');
+            }
         }
     });
 
@@ -44,22 +84,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         return isValid;
     };
-    // recibe el id del campo y el mensaje de error y valida si el campo está vacío
+
     const validateField = (fieldId, errorMessage) => {
-        const field = document.getElementById(fieldId);// levanta el elemento por su id
-        const value = field.value.trim(); // al value se le quitan los espacios en blanco al principio y al final
-        //valida si el campo está vacío
+        const field = document.getElementById(fieldId);
+        const value = field.value.trim();
         if (value === '') {
-            //invoca la función setErrorFor y le pasa el campo y el mensaje de error
             setErrorFor(field, errorMessage);
             return false;
         } else {
-            //invoca la función setSuccessFor y le pasa el campo
             setSuccessFor(field);
             return true;
         }
     };
-    // recibe el campo y el mensaje de error y valida si el campo está vacío o si el email no es válido
+
     const validateEmailField = (fieldId, errorMessage) => {
         const field = document.getElementById(fieldId);
         const email = field.value.trim();
@@ -75,32 +112,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // recibe el campo y el mensaje de error y agrega la clase error al div padre del campo y muestra el mensaje de error
     const setErrorFor = (input, message) => {
-        // Obtiene el div padre del campo
         const formControl = input.closest('div');
-        //levanta por su clase el elemento que contiene el mensaje de error
         const errorText = formControl.querySelector('.error-text');
-        //agrega la clase error al div padre del campo
         formControl.classList.add('error');
-        //muestra el mensaje de error
         errorText.innerText = message;
-        //pone el foco en el campo
         input.focus();
     };
-    
-    // recibe el campo y elimina la clase error del div padre del campo y el mensaje de error
+
     const setSuccessFor = (input) => {
-        // Obtiene el div padre del campo
         const formControl = input.closest('div');
-        //quita la clase error al div padre del campo
         formControl.classList.remove('error');
-        //levanta por su clase el elemento que contiene el mensaje de error
         const errorText = formControl.querySelector('.error-text');
-        //elimina el mensaje de error
         errorText.innerText = '';
     };
-    // funcion que valida si es un mail valido con una expresion regular
+
     const isEmail = (email) => {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
