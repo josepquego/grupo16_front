@@ -35,26 +35,26 @@
     </header>
     <main id="main" class="main">
         <div data-aos="zoom-in" data-aos-duration="1000" class="container text-center seccionRegistrarse">
-            <form class="formgeneral" action="" method="get" id="form-registro">
+            <form class="formgeneral" action="" method="get" id="form-registro" novalidate>
                 <h2 class="tituloRegistrarse">Registro</h2>
                 <div>
-                    <input type="text" placeholder="Nombre"  id="nombre" name="nombre">
+                    <input type="text" placeholder="Nombre"  id="nombre" name="nombre" required>
                     <div id="error-nombre" class="error-text"></div>
                 </div>
                 <div>
-                    <input type="text" placeholder="Apellido"  id="apellido" name="apellido">
+                    <input type="text" placeholder="Apellido"  id="apellido" name="apellido" required>
                     <div id="error-apellido" class="error-text"></div>
                 </div>
                 <div>
-                    <input type="email" placeholder="Email"  id="email" name="email">
+                    <input type="email" placeholder="Email"  id="email" name="email" required>
                     <div id="error-email" class="error-text"></div>
                 </div>
                 <div>
-                    <input type="password" placeholder="Contraseña"  id="password" name="password">
+                    <input type="password" placeholder="Contraseña"  id="password" name="password" required>
                     <div id="error-password" class="error-text"></div>
                 </div>
                 <div>
-                    <input type="date" placeholder="Fecha de Nacimiento (dd/mm/aaaa)"  id="fechaNacimiento" name="fechaNacimiento">
+                    <input type="date" placeholder="Fecha de Nacimiento (dd/mm/aaaa)"  id="fechaNacimiento" required name="fechaNacimiento">
                     <div id="error-fechaNac" class="error-text"></div>
                 </div>
                 <div>

@@ -414,7 +414,7 @@ footer p{
 /*seccion de registrarse.html*/
 .seccionRegistrarse{
     background-color:rgb(42, 42, 42);
-    width: 30%;
+    width: 50%;
     margin:30px 30px;
     border-radius: 5px;
     padding: 40px 20px;
@@ -422,13 +422,14 @@ footer p{
     flex-direction:column;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+   /* height: 90vh;*/
     font-size:1.2rem;
-    .tituloRegistrarse{
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 20px;
-    }
+}
+
+.tituloRegistrarse{
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
 }
 
 .formgeneral  {
@@ -451,6 +452,7 @@ footer p{
         margin-bottom: 10px;
     }
   
+
     .terminos{
         font-size: 0.8rem;
         display: flex;
@@ -460,7 +462,6 @@ footer p{
             margin-left: 10px;
         }
     }
-
 
 /*seleccionar todos los input menos el checkbox*/
 

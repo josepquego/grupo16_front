@@ -5,7 +5,7 @@ const password = document.getElementById('password');
 const errorEmail = document.getElementById('error-email');
 const errorPassword = document.getElementById('error-password');
 // levanto el formulario
-const form = document.getElementById('form');
+const form = document.getElementById('inicio');
 //en el evento submit valido que los campos esten llenos y no dejo que se envie automaticamente el formulario
 form.addEventListener('submit', (e) => {
     // limpio los mensajes de error

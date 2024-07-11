@@ -37,34 +37,34 @@
         <main id="mainAdministrador" class="mainAdmin">  
           <div class="container mt-4">  
                 <h2 class="tituloRegistrarse">Gestor de Películas</h2>
-                <form id="formPelicula" class="row row-cols-lg-auto g-3 align-items-center" method="post" enctype="multipart/form-data">
+                <form id="formPelicula" class="row row-cols-lg-auto g-3 align-items-center" method="post" enctype="multipart/form-data" novalidate>
                   <div hidden class="mb-3 col-12 col-md-4">
                     <label for="id" class="form-label">Id</label>
-                    <input type="number" class="form-control" id="id" name="id">
+                    <input type="number" class="form-control" id="id" name="id" required>
                   </div>
                     <div class="mb-3 col-12 col-md-4">
                       <label for="titulo" class="form-label">Titulo</label>
-                      <input type="text" class="form-control" id="titulo" name="titulo">
-                      <div id="titulo-error" class="error"></div>
+                      <input type="text" class="form-control" id="titulo" name="titulo" required>
+                      <div id="titulo-error" class="error-text"></div>
                     </div>
                     <div class="mb-3 col-12 col-md-4">
                         <label for="duracion" class="form-label">Duración</label>
-                        <input type="text" class="form-control" id="duracion" placeholder="2h 33m" name="duracion">
-                        <div id="duracion-error" class="error"></div>
+                        <input type="text" class="form-control" id="duracion" placeholder="2h 33m" name="duracion" required>
+                        <div id="duracion-error" class="error-text"></div>
                     </div>
                     <div class="mb-3 col-12 col-md-4">
                         <label for="genero" class="form-label">Genero</label>
-                        <input type="text" class="form-control" id="genero" name="genero">
-                        <div id="genero-error" class="error"></div>
+                        <input type="text" class="form-control" id="genero" name="genero" required>
+                        <div id="genero-error" class="error-text"></div>
                     </div>
                     <div class="mb-3 col-12 col-md-8">
                         <label for="imagen" class="form-label">Imagen</label>
                         <input type="file" class="form-control" id="imagen" name="imagen">
-                        <div id="imagen-error" class="error"></div>
+                        <div id="imagen-error" class="error-text"></div>
                     </div>
                     <div class="mb-3">
-                        <button type="button" class="btn btn-success" >Ingresar Pelicula</button>
-                        <button type="button" class="btn btn-success" >Modificar Pelicula</button>
+                        <button type="submit" class="btn btn-success" >Ingresar Pelicula</button>
+                        <button type="submit" class="btn btn-success" >Modificar Pelicula</button>
                     </div>
                    
                   </form> 
